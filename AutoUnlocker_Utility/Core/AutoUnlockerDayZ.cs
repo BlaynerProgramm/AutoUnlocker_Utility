@@ -23,35 +23,49 @@ namespace AutoUnlocker_Utility.Core
             SetForegroundGame("DayZ", "DayZ");
 
             Thread.Sleep(300);
-            SelectNext();
-
-            Selecting();
+            for(int i = 0; i < 10; i++)
+            {
+                SelectNext(2);
+                for (int j = 0; j < 10; j++)
+                {
+                    Selecting();
+                    SelectNext(2);
+                    Thread.Sleep(300);
+                    Selecting(200, 1100);
+                    SelectNext(1);
+                    Thread.Sleep(300);
+                }
+                SelectNext(1);
+                Selecting(200, 1100);
+            }
         }
 
         /// <summary>
         /// Перебор единиц
         /// </summary>
-        private void Selecting()
+        private void Selecting(int pause = 200, int time = 4200)
         {
-            Thread.Sleep(200);
+            Thread.Sleep(pause);
             inputSimulator.Mouse.RightButtonDown();
-            Thread.Sleep(4200);
+            Thread.Sleep(time);
             inputSimulator.Mouse.RightButtonUp();
         }
 
         /// <summary>
         /// Переход на другой порядок
         /// </summary>
-        private void SelectNext()
+        private void SelectNext(int num)
         {
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < num; i++)
             {
+                Thread.Sleep(800);
                 inputSimulator.Mouse.RightButtonDown();
                 Thread.Sleep(100);
                 inputSimulator.Mouse.RightButtonUp();
-                Thread.Sleep(200);
             }
         }
+
+
 
         /// <summary>
         /// Развернуть игру
