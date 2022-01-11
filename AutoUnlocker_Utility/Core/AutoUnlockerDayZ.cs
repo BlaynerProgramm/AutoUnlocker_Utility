@@ -1,8 +1,8 @@
-﻿using System;
+﻿using GregsStack.InputSimulatorStandard;
+
+using System;
 using System.Runtime.InteropServices;
 using System.Threading;
-
-using GregsStack.InputSimulatorStandard;
 
 namespace AutoUnlocker_Utility.Core
 {
@@ -12,8 +12,10 @@ namespace AutoUnlocker_Utility.Core
     internal class AutoUnlockerDayZ : IAutoUnlocker
     {
         private readonly InputSimulator inputSimulator;
-
-        public AutoUnlockerDayZ() => inputSimulator = new InputSimulator();
+        public AutoUnlockerDayZ()
+        {
+            inputSimulator = new InputSimulator();
+        }
 
         /// <summary>
         /// Запуск процесса
@@ -23,7 +25,13 @@ namespace AutoUnlocker_Utility.Core
             SetForegroundGame("DayZ", "DayZ");
 
             Thread.Sleep(300);
-            for(int i = 0; i < 10; i++)
+
+            Start3();
+        }
+
+        private  void Start3()
+        {
+            for (int i = 0; i < 10; i++)
             {
                 SelectNext(2);
                 for (int j = 0; j < 10; j++)
@@ -38,6 +46,7 @@ namespace AutoUnlocker_Utility.Core
                 SelectNext(1);
                 Selecting(200, 1100);
             }
+            SelectNext(1);
         }
 
         /// <summary>
